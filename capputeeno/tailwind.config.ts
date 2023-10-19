@@ -5,7 +5,7 @@ const config: Config = {
   theme: {
     extend: {
       maxWidth: {
-        desktop: '1120px',
+        desktop: '1160px',
       },
       colors: {
         'app-red': '#DE3838',
