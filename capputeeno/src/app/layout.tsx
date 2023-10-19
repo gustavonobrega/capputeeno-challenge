@@ -1,7 +1,9 @@
-import { Header } from '@/components/Header'
 import './globals.css'
 import type { Metadata } from 'next'
 import { Saira } from 'next/font/google'
+
+import { Header } from '@/components/Header'
+import { FilterContextProvider } from '@/contexts/filterContext'
 
 const saira = Saira({
   weight: ['300', '400', '500', '600'],
@@ -22,8 +24,10 @@ export default function RootLayout({
     <html lang="en">
       <body className={saira.className}>
         <div className="min-h-screen bg-app-background-100">
-          <Header />
-          {children}
+          <FilterContextProvider>
+            <Header />
+            {children}
+          </FilterContextProvider>
         </div>
       </body>
     </html>
