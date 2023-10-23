@@ -6,8 +6,8 @@ import { Header } from '@/components/Header'
 import { FilterContextProvider } from '@/contexts/filterContext'
 
 const saira = Saira({
-  weight: ['300', '400', '500', '600'],
   subsets: ['latin'],
+  weight: ['300', '400', '500', '600'],
 })
 
 export const metadata: Metadata = {
