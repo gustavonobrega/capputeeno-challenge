@@ -2,8 +2,8 @@
 
 import { tv } from 'tailwind-variants'
 
-import { type FilterType } from '@/contexts/filterContext'
 import { useFilterContext } from '@/hooks/useFilterContext'
+import { type FilterType } from '@/types/filter-types'
 
 const navItem = tv({
   base: [

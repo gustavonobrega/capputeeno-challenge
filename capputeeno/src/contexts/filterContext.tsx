@@ -1,19 +1,11 @@
 'use client'
 
+import type { FilterType, OrderOption } from '@/types/filter-types'
 import { ReactNode, createContext, useState } from 'react'
 
 type FilterContextProviderProps = {
   children: ReactNode
 }
-
-export type FilterType = 'all' | 't-shirts' | 'mugs'
-
-export type OrderOption =
-  | 'news'
-  | 'topseller'
-  | 'biggest_price'
-  | 'minor_price'
-  | ''
 
 type FilterContextProps = {
   type: FilterType

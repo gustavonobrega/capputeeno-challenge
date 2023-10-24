@@ -3,9 +3,9 @@
 import { ChevronDown } from 'lucide-react'
 import { ReactNode } from 'react'
 
-import { type OrderOption } from '@/contexts/filterContext'
 import { useFilterContext } from '@/hooks/useFilterContext'
 import * as SelectPrimitive from '@radix-ui/react-select'
+import { type OrderOption } from '@/types/filter-types'
 
 type SelectProps = {
   children: ReactNode
