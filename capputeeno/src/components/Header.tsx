@@ -1,7 +1,8 @@
-import { Search, ShoppingBag } from 'lucide-react'
+import { ShoppingBag } from 'lucide-react'
 import { Saira_Stencil_One as Stencil } from 'next/font/google'
 import Link from 'next/link'
 import React from 'react'
+import { SearchInput } from './SearchInput'
 
 const stencil = Stencil({
   weight: ['400'],
@@ -20,14 +21,7 @@ export function Header() {
         </Link>
 
         <div className="flex items-center gap-6 ">
-          <div className="hidden w-96 rounded-lg bg-zinc-100 px-4 py-3 text-sm text-app-text-400 focus-within:ring-2 focus-within:ring-app-light-orange md:flex">
-            <input
-              type="text"
-              placeholder="Procurando por algo específico?"
-              className="flex-1 bg-zinc-100 outline-none placeholder:text-sm placeholder:text-app-text-300"
-            />
-            <Search className="text-app-text-300" size={26} />
-          </div>
+          <SearchInput placeholder="Procurando por algo específico?" />
 
           <Link href="/cart" className="relative">
             <ShoppingBag size={24} className="text-app-text-300" />
