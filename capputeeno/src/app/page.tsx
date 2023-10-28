@@ -12,10 +12,15 @@ import { type Product } from '@/types/product'
 import { useQuery } from '@tanstack/react-query'
 import { ProductCardSkeleton } from '@/components/Skeletons/ProductCardSkeleton'
 
+type QueryData = {
+  products: Product[]
+  count: number
+}
+
 export default function Home() {
   const { type, order, search } = useFilterContext()
 
-  const { data, isLoading, isError } = useQuery<Product[]>({
+  const { data, isLoading, isError } = useQuery<QueryData>({
     queryKey: ['products', type, order],
     queryFn: async () => {
       const response = await api.post('/', {
@@ -23,11 +28,14 @@ export default function Home() {
         variables: formatQueryVariables(order, type),
       })
 
-      return response.data.data.allProducts
+      return {
+        products: response.data.data.allProducts,
+        count: response.data.data._allProductsMeta,
+      }
     },
   })
 
-  const products = data?.filter((product) =>
+  const products = data?.products?.filter((product) =>
     product.name.toLocaleLowerCase().includes(search.toLocaleLowerCase()),
   )
 

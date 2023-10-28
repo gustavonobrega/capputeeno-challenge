@@ -6,5 +6,8 @@ query getProducts($sortField: String, $sortOrder: String, $filter: ProductFilter
     image_url
     price_in_cents
   }
+  _allProductsMeta {
+    count
+  }
 }
 `
