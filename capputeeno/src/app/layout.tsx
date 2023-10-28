@@ -2,8 +2,9 @@ import './globals.css'
 import type { Metadata } from 'next'
 import { Saira } from 'next/font/google'
 
-import { Header } from '@/components/Header'
 import { FilterContextProvider } from '@/contexts/filterContext'
+import { Header } from '@/components/Header'
+import { TanstackProvider } from '@/lib/react-query'
 
 const saira = Saira({
   subsets: ['latin'],
@@ -24,10 +25,12 @@ export default function RootLayout({
     <html lang="en">
       <body className={saira.className}>
         <div className="min-h-screen bg-app-background-100">
-          <FilterContextProvider>
-            <Header />
-            {children}
-          </FilterContextProvider>
+          <TanstackProvider>
+            <FilterContextProvider>
+              <Header />
+              {children}
+            </FilterContextProvider>
+          </TanstackProvider>
         </div>
       </body>
     </html>

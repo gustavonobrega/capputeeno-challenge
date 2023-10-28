@@ -1,7 +1,7 @@
 'use client'
 
 import type { FilterType, OrderOption } from '@/types/filter-types'
-import { ReactNode, createContext, useState } from 'react'
+import { ReactNode, createContext, useDeferredValue, useState } from 'react'
 
 type FilterContextProviderProps = {
   children: ReactNode
@@ -12,6 +12,8 @@ type FilterContextProps = {
   handleChangeType: (filterType: FilterType) => void
   order: OrderOption
   handleChangeOrder: (filterOrder: OrderOption) => void
+  search: string
+  handleChangeSearch: (searchInput: string) => void
 }
 
 export const FilterContext = createContext({} as FilterContextProps)
@@ -22,6 +24,9 @@ export function FilterContextProvider({
   const [type, setType] = useState<FilterType>('all')
   const [order, setOrder] = useState<OrderOption>('')
 
+  const [searchInput, setSearchInput] = useState('')
+  const search = useDeferredValue(searchInput)
+
   function handleChangeType(filterType: FilterType) {
     setType(filterType)
   }
@@ -30,9 +35,20 @@ export function FilterContextProvider({
     setOrder(orderOption)
   }
 
+  function handleChangeSearch(searchInput: string) {
+    setSearchInput(searchInput)
+  }
+
   return (
     <FilterContext.Provider
-      value={{ type, order, handleChangeType, handleChangeOrder }}
+      value={{
+        type,
+        order,
+        search,
+        handleChangeType,
+        handleChangeOrder,
+        handleChangeSearch,
+      }}
     >
       {children}
     </FilterContext.Provider>

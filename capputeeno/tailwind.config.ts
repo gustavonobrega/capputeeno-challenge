@@ -7,6 +7,9 @@ const config: Config = {
       maxWidth: {
         desktop: '1160px',
       },
+      gridTemplateColumns: {
+        app: 'repeat(auto-fit, 256px)',
+      },
       colors: {
         'app-red': '#DE3838',
         'app-orange': '#FD951F',
