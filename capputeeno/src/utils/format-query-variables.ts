@@ -19,11 +19,16 @@ const ORDERS = {
   },
 }
 
+const PERPAGE = 10
+
 export function formatQueryVariables(
   selectedOrder: OrderOption,
   selectedType: FilterType,
+  currentPage: number,
+  perPage: number,
 ) {
   const filter = selectedType === 'all' ? {} : { category: selectedType }
+  const page = currentPage - 1
 
   if (
     selectedOrder === 'news' ||
@@ -35,8 +40,10 @@ export function formatQueryVariables(
       sortField: ORDERS[selectedOrder].field,
       sortOrder: ORDERS[selectedOrder].order,
       filter,
+      page,
+      perPage,
     }
   } else {
-    return { sortField: '', sortOrder: '', filter }
+    return { sortField: '', sortOrder: '', filter, page, perPage }
   }
 }

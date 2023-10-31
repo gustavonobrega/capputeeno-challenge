@@ -11,6 +11,7 @@ import { api } from '@/lib/axios'
 import { type Product } from '@/types/product'
 import { useQuery } from '@tanstack/react-query'
 import { ProductCardSkeleton } from '@/components/Skeletons/ProductCardSkeleton'
+import { Pagination } from '@/components/Pagination'
 
 type QueryData = {
   products: Product[]
@@ -18,19 +19,19 @@ type QueryData = {
 }
 
 export default function Home() {
-  const { type, order, search } = useFilterContext()
+  const { type, order, search, page, perPage } = useFilterContext()
 
   const { data, isLoading, isError } = useQuery<QueryData>({
-    queryKey: ['products', type, order],
+    queryKey: ['products', type, order, page],
     queryFn: async () => {
       const response = await api.post('/', {
         query: GET_PRODUCTS,
-        variables: formatQueryVariables(order, type),
+        variables: formatQueryVariables(order, type, page, perPage),
       })
 
       return {
         products: response.data.data.allProducts,
-        count: response.data.data._allProductsMeta,
+        count: response.data.data._allProductsMeta.count,
       }
     },
   })
@@ -51,6 +52,8 @@ export default function Home() {
           <SelectItem value="topseller" text="Mais vendidos" />
         </Select>
       </div>
+
+      {products && <Pagination count={data?.count} />}
 
       <main className="mb-16 mt-9 grid grid-cols-app justify-center gap-x-8 gap-y-6">
         {isLoading ? (
@@ -75,6 +78,8 @@ export default function Home() {
           })
         )}
       </main>
+
+      {products && <Pagination count={data?.count} />}
     </div>
   )
 }
