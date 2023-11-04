@@ -1,10 +1,12 @@
 import './globals.css'
 import type { Metadata } from 'next'
 import { Saira } from 'next/font/google'
+import { Toaster } from 'react-hot-toast'
 
 import { FilterContextProvider } from '@/contexts/filterContext'
 import { Header } from '@/components/Header'
 import { TanstackProvider } from '@/lib/react-query'
+import { CartContextProvider } from '@/contexts/cartContext'
 
 const saira = Saira({
   subsets: ['latin'],
@@ -26,10 +28,14 @@ export default function RootLayout({
       <body className={saira.className}>
         <div className="min-h-screen bg-app-background-100">
           <TanstackProvider>
-            <FilterContextProvider>
-              <Header />
-              {children}
-            </FilterContextProvider>
+            <CartContextProvider>
+              <FilterContextProvider>
+                <Header />
+                {children}
+
+                <Toaster position="top-right" />
+              </FilterContextProvider>
+            </CartContextProvider>
           </TanstackProvider>
         </div>
       </body>
