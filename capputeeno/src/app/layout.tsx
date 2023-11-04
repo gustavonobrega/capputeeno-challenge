@@ -4,9 +4,9 @@ import { Saira } from 'next/font/google'
 import { Toaster } from 'react-hot-toast'
 
 import { FilterContextProvider } from '@/contexts/filterContext'
-import { Header } from '@/components/Header'
 import { TanstackProvider } from '@/lib/react-query'
 import { CartContextProvider } from '@/contexts/cartContext'
+import { Header } from '@/components/Header'
 
 const saira = Saira({
   subsets: ['latin'],
