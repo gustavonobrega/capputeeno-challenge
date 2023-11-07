@@ -1,7 +1,7 @@
 'use client'
 
 import { Product } from '@/types/product'
-import { ReactNode, createContext, useState } from 'react'
+import { ReactNode, createContext, useEffect, useState } from 'react'
 
 type CartContextProviderProps = {
   children: ReactNode
@@ -13,8 +13,9 @@ type CartProduct = Product & {
 
 type CartContextProps = {
   cart: CartProduct[]
-  handleAddToCart: (product: Product, quantity?: number) => void
   cartSize: number
+  handleAddToCart: (product: Product, quantity?: number) => void
+  handleRemoveFromCart: (productId: string) => void
 }
 
 export const CartContext = createContext({} as CartContextProps)
@@ -27,6 +28,11 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
     return acc
   }, 0)
 
+  useEffect(() => {
+    const storedCart = localStorage.getItem('@capputeeno:cart')
+    setCart(storedCart ? JSON.parse(storedCart) : [])
+  }, [])
+
   function handleAddToCart(product: Product, quantity?: number) {
     const alreadyInCart = cart.find(
       (cartProduct) => cartProduct.id === product.id,
@@ -38,7 +44,14 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
         quantity: 1,
       }
 
-      setCart((currentCart) => [...currentCart, cartProduct])
+      setCart((currentCart) => {
+        localStorage.setItem(
+          '@capputeeno:cart',
+          JSON.stringify([...currentCart, cartProduct]),
+        )
+
+        return [...currentCart, cartProduct]
+      })
     } else {
       if (alreadyInCart.quantity >= 5) {
         throw new Error('Você já possui o limite desse produto por carrinho!')
@@ -55,11 +68,27 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
       })
 
       setCart(newCart)
+      localStorage.setItem('@capputeeno:cart', JSON.stringify(newCart))
+    }
+  }
+
+  function handleRemoveFromCart(productId: string) {
+    const existsInCart = cart.find(
+      (cartProduct) => cartProduct.id === productId,
+    )
+
+    if (existsInCart) {
+      const filteredCart = cart.filter((product) => product.id !== productId)
+
+      setCart(filteredCart)
+      localStorage.setItem('@capputeeno:cart', JSON.stringify(filteredCart))
     }
   }
 
   return (
-    <CartContext.Provider value={{ cart, handleAddToCart, cartSize }}>
+    <CartContext.Provider
+      value={{ cart, cartSize, handleAddToCart, handleRemoveFromCart }}
+    >
       {children}
     </CartContext.Provider>
   )
