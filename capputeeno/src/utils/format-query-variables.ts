@@ -19,8 +19,6 @@ const ORDERS = {
   },
 }
 
-const PERPAGE = 10
-
 export function formatQueryVariables(
   selectedOrder: OrderOption,
   selectedType: FilterType,
