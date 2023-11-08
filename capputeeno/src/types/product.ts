@@ -6,3 +6,7 @@ export type Product = {
   description?: string
   category?: string
 }
+
+export type CartProduct = Product & {
+  quantity: number
+}

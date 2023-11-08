@@ -1,14 +1,10 @@
 'use client'
 
-import { Product } from '@/types/product'
+import type { CartProduct, Product } from '@/types/product'
 import { ReactNode, createContext, useEffect, useState } from 'react'
 
 type CartContextProviderProps = {
   children: ReactNode
-}
-
-type CartProduct = Product & {
-  quantity: number
 }
 
 type CartContextProps = {
