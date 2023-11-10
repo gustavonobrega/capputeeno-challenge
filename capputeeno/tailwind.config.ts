@@ -9,6 +9,7 @@ const config: Config = {
       },
       gridTemplateColumns: {
         app: 'repeat(auto-fit, 256px)',
+        cart: '2fr 1fr',
       },
       colors: {
         'app-red': '#DE3838',

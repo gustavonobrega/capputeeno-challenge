@@ -1,6 +1,7 @@
 'use client'
 
 import type { CartProduct, Product } from '@/types/product'
+import { useRouter } from 'next/navigation'
 import { ReactNode, createContext, useEffect, useState } from 'react'
 
 type CartContextProviderProps = {
@@ -10,16 +11,24 @@ type CartContextProviderProps = {
 type CartContextProps = {
   cart: CartProduct[]
   cartSize: number
+  totalCartPrice: number
   handleAddToCart: (product: Product, quantity?: number) => void
   handleRemoveFromCart: (productId: string) => void
+  handleClearCart: () => void
 }
 
 export const CartContext = createContext({} as CartContextProps)
 
 export function CartContextProvider({ children }: CartContextProviderProps) {
   const [cart, setCart] = useState<CartProduct[]>([])
+  const router = useRouter()
   const cartSize = cart.reduce((acc, product) => {
     acc += product.quantity
+
+    return acc
+  }, 0)
+  const totalCartPrice = cart.reduce((acc, product) => {
+    acc += product.quantity * product.price_in_cents
 
     return acc
   }, 0)
@@ -49,7 +58,7 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
         return [...currentCart, cartProduct]
       })
     } else {
-      if (alreadyInCart.quantity >= 5) {
+      if (alreadyInCart.quantity >= 5 && quantity === undefined) {
         throw new Error('Você já possui o limite desse produto por carrinho!')
       }
 
@@ -81,9 +90,22 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
     }
   }
 
+  function handleClearCart() {
+    setCart([])
+    localStorage.setItem('@capputeeno:cart', JSON.stringify([]))
+    router.push('/')
+  }
+
   return (
     <CartContext.Provider
-      value={{ cart, cartSize, handleAddToCart, handleRemoveFromCart }}
+      value={{
+        cart,
+        cartSize,
+        totalCartPrice,
+        handleAddToCart,
+        handleRemoveFromCart,
+        handleClearCart,
+      }}
     >
       {children}
     </CartContext.Provider>
