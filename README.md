@@ -1,7 +1,7 @@
-![image](https://user-images.githubusercontent.com/40845824/121069742-3accdb00-c7a4-11eb-87d0-3dc47e433762.png)
+ <h1 align="center">🚀 Front end challenge 🚀</p>
 
 
-# 🚀 Front end challenge
+# 🧠 Contexto
 
 Bem-vindo(a). Este é o desafio Front end!
 
@@ -14,49 +14,91 @@ Bom desafio!
 
 > ⚠️ **É importante que o seu repo esteja público, caso contrário não iremos conseguir avaliar sua resposta**
 
-# 🧠 Contexto
-
-![Protótipo](https://storage.googleapis.com/xesque-dev/challenge-images/prototipo.png?42)
-
 O desafio será implementar um e-commerce para venda de canecas e camisetas que deverá ter as seguintes funcionalidades:
-- [ ] Catálogo de produtos com paginação
-- [ ] Filtragem produtos por categoria
-- [ ] Busca por nome do produto
-- [ ] Adicionar e remover produtos do carrinho
-- [ ] Finalizar compra
+- [x] Catálogo de produtos com paginação
+- [x] Filtragem produtos por categoria
+- [x] Busca por nome do produto
+- [x] Adicionar e remover produtos do carrinho
+- [x] Finalizar compra
 
-## 📋 Instruções
+#
 
-Chegou a hora de colocar a mão na massa!
+<h1 align="center">
+    Capputeeno
+</h1>
 
-- Siga [esse protótipo](https://www.figma.com/file/rET9F2CeUEJdiVN7JRu993/E-commerce---capputeeno?node-id=680%3A6449)
-- Utilize Next.js e Typescript
-- Faça a estilização com styled-components
-- Utilize o local storage para gerenciar o carrinho
-- Por favor, inclua no README as instruções de instalação do projeto
-- Sinta-se livre para incluir quaisquer observações
-- Consuma nossa **API GraphQL** rodando o comando `yarn start` na pasta `api`
+<p align="center">Next.js e-commerce for selling mugs and t-shirts</p>
 
-## ✔️ Critérios de Avaliação
+<p align="center">
+    <a href="https://github.com/gustavonobrega">
+    <img src="https://img.shields.io/badge/author-gustavonobrega-orange" alt="Author">
+  </a>
+</p>
 
-Além dos requisitos levantados acima, iremos olhar para os seguintes critérios durante a correção do desafio:
+### 💻 Desktop
+<p align="center">
+  <img src="public/desktop.png">
+</p>
 
-- Gerenciamento de estado
-- Componentização
-- Responsividade
-- Preocupação com usabilidade
-- Preocupação com acessibilidade
-- Testes e2e
-- Padrões de código
-- Padrão de commits (_Conventional_)
+### 📱 Mobile
+<p align="center">
+  <img src="public/mobile.png" width="250">
+</p>
 
-## 😎 Seria legal
-- Fazer deploy na vercel ou em outro local de sua preferência e disponibilizar um link de visualização, se necessário utilize esse servidor para a API GraphQL:  https://rocketseat-frontend-challenge.herokuapp.com/
-- Testes unitários
-- Utilização de cache do Next.js
+<hr />
 
+## 🚀 Technologies
+
+This React app features all the latest tools and practices in web development!
+
+- [ReactJS](https://reactjs.org/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [Next.js](https://nextjs.org/)
+- [Tailwind CSS](https://www.tailwindcss.com)
+- [React Query](https://tanstack.com/query/latest/)
+- [Radix](https://radix-ui.com/)
+- [Axios](https://axios-http.com/)
+- [Lucide Icons](https://lucide.dev/icons/)
+- [React Hot Toast](https://react-hot-toast.com/)
+
+
+
+## 💻  Getting started
+
+_Before you run this application you need to make sure the server is running!_.
+
+
+
+#### Clone this repository
+```bash
+$ git clone https://github.com/gustavonobrega/capputeeno-challenge
+```
+
+#### Running the server
+```bash
+# Go into the repository
+$ cd api
+
+# Install dependencies
+$ yarn
+
+# Run the server
+$ yarn start
+```
+#### Running the app
+
+```bash
+
+# Go into the repository
+$ cd capputeeno
+
+# Install dependencies
+$ npm install
+
+# Run the app
+$ npm run dev
+```
 ---
 
-_O desafio acima foi cuidadosamente construído para propósitos de avaliação apenas. Já possuimos uma funcionalidade similar na nossa plataforma._
+Made with ♥ by Gustavo Nobrega
 
-Made with 💜 at Rocketseat
