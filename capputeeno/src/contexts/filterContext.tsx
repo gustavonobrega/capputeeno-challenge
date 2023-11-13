@@ -1,12 +1,12 @@
 'use client'
 
 import type { FilterType, OrderOption } from '@/types/filter-types'
+import { useRouter, usePathname } from 'next/navigation'
 import {
   Dispatch,
   ReactNode,
   SetStateAction,
   createContext,
-  useDeferredValue,
   useState,
 } from 'react'
 
@@ -37,13 +37,15 @@ export function FilterContextProvider({
   const [page, setPage] = useState(1)
   const perPage = 10
 
-  const [searchInput, setSearchInput] = useState('')
-  const search = useDeferredValue(searchInput)
+  const [search, setSearch] = useState('')
+  const pathName = usePathname()
+  const router = useRouter()
 
   function handleChangeType(filterType: FilterType) {
     setType(filterType)
     setOrder('')
     setPage(1)
+    setSearch('')
   }
 
   function handleChangeOrder(orderOption: OrderOption) {
@@ -51,7 +53,12 @@ export function FilterContextProvider({
   }
 
   function handleChangeSearch(searchInput: string) {
-    setSearchInput(searchInput)
+    if (pathName !== '/') {
+      setSearch(searchInput)
+      router.push('/')
+    } else {
+      setSearch(searchInput)
+    }
   }
 
   return (
