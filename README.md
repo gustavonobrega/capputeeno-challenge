@@ -37,12 +37,12 @@ O desafio será implementar um e-commerce para venda de canecas e camisetas que 
 
 ### 💻 Desktop
 <p align="center">
-  <img src="public/desktop.png">
+  <img src="capputeeno/public/desktop.png">
 </p>
 
 ### 📱 Mobile
 <p align="center">
-  <img src="public/mobile.png" width="250">
+  <img src="capputeeno/public/mobile.png" width="250">
 </p>
 
 <hr />
