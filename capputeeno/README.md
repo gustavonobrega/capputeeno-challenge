@@ -1,36 +1,104 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+ <h1 align="center">🚀 Front end challenge 🚀</p>
 
-## Getting Started
 
-First, run the development server:
+# 🧠 Contexto
 
+Bem-vindo(a). Este é o desafio Front end!
+
+O objetivo deste desafio é avaliar suas habilidades de programação.
+Quando sua solução estiver pronta, basta responder o e-mail que recebeu com o link do seu repo aqui no Github!
+Em seguida, enviaremos o feedback e as instruções dos próximos passos!
+
+Caso tenha alguma dúvida, nós estamos disponíveis no email *recrutamento@rocketseat.com.br*
+Bom desafio!
+
+> ⚠️ **É importante que o seu repo esteja público, caso contrário não iremos conseguir avaliar sua resposta**
+
+O desafio será implementar um e-commerce para venda de canecas e camisetas que deverá ter as seguintes funcionalidades:
+- [x] Catálogo de produtos com paginação
+- [x] Filtragem produtos por categoria
+- [x] Busca por nome do produto
+- [x] Adicionar e remover produtos do carrinho
+- [x] Finalizar compra
+
+#
+
+<h1 align="center">
+    Capputeeno
+</h1>
+
+<p align="center">Next.js e-commerce for selling mugs and t-shirts</p>
+
+<p align="center">
+    <a href="https://github.com/gustavonobrega">
+    <img src="https://img.shields.io/badge/author-gustavonobrega-orange" alt="Author">
+  </a>
+</p>
+
+### 💻 Desktop
+<p align="center">
+  <img src="public/desktop.png">
+</p>
+
+### 📱 Mobile
+<p align="center">
+  <img src="public/mobile.png" width="250">
+</p>
+
+<hr />
+
+## 🚀 Technologies
+
+This React app features all the latest tools and practices in web development!
+
+- [ReactJS](https://reactjs.org/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [Next.js](https://nextjs.org/)
+- [Tailwind CSS](https://www.tailwindcss.com)
+- [React Query](https://tanstack.com/query/latest/)
+- [Radix](https://radix-ui.com/)
+- [Axios](https://axios-http.com/)
+- [Lucide Icons](https://lucide.dev/icons/)
+- [React Hot Toast](https://react-hot-toast.com/)
+
+
+
+## 💻  Getting started
+
+_Before you run this application you need to make sure the server is running!_.
+
+
+
+#### Clone this repository
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+$ git clone https://github.com/gustavonobrega/capputeeno-challenge
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+#### Running the server
+```bash
+# Go into the repository
+$ cd api
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+# Install dependencies
+$ yarn
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+# Run the server
+$ yarn start
+```
+#### Running the app
 
-## Learn More
+```bash
 
-To learn more about Next.js, take a look at the following resources:
+# Go into the repository
+$ cd capputeeno
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+# Install dependencies
+$ npm install
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+# Run the app
+$ npm run dev
+```
+---
 
-## Deploy on Vercel
+Made with ♥ by Gustavo Nobrega
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
