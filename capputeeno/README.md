@@ -65,7 +65,7 @@ This React app features all the latest tools and practices in web development!
 
 ## 💻  Getting started
 
-_Before you run this application you need to make sure the server is running!_.
+_Before you run this application make sure to copy the .env.example file, rename it to .env.local and add all the values for the environment variables._
 
 
 

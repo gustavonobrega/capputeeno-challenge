@@ -5,6 +5,7 @@ import { ShoppingBag } from 'lucide-react'
 import { formatPrice } from '@/utils/format-price'
 import { BackButton } from '@/components/BackButton'
 import { AddButton } from './components/AddButton'
+import { env } from '@/env'
 
 type ProductProps = {
   params: {
@@ -13,7 +14,7 @@ type ProductProps = {
 }
 
 export default async function Product({ params }: ProductProps) {
-  const product: Product = await fetch('http://localhost:3333/', {
+  const product: Product = await fetch(env.APP_URL, {
     next: {
       revalidate: 60 * 60, // 1 hour
     },
