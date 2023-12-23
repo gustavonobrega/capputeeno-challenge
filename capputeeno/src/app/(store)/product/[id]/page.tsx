@@ -13,39 +13,41 @@ type ProductProps = {
   }
 }
 
-export default async function Product({ params }: ProductProps) {
-  const product: Product = await fetch(env.APP_URL, {
-    next: {
-      revalidate: 60 * 60, // 1 hour
-    },
-    method: 'POST',
-    headers: {
-      'Content-type': 'application/json',
-    },
-    body: JSON.stringify({
-      query: `
-        query getProduct($id: ID!) {
-          Product(id: $id) {
-            id
-            name
-            category
-            description
-            image_url
-            price_in_cents
+async function getProduct(id: string): Promise<Product> {
+  try {
+    const response = await fetch(env.APP_URL, {
+      next: {
+        revalidate: 60 * 60, // 1 hour
+      },
+      method: 'POST',
+      headers: {
+        'Content-type': 'application/json',
+      },
+      body: JSON.stringify({
+        query: `
+          query getProduct($id: ID!) {
+            Product(id: $id) {
+              id
+              name
+              category
+              description
+              image_url
+              price_in_cents
+            }
           }
-        }
-      `,
-      variables: { id: params.id },
-    }),
-  })
-    .then((response) => response.json())
-    .then((res) => res.data.Product)
-    .catch((error) => {
-      if (error instanceof Error) {
-        console.log(error)
-        throw new Error('Não foi possível obter os dados do produto.')
-      }
+        `,
+        variables: { id },
+      }),
     })
+    const product = await response.json()
+    return product.data.Product
+  } catch (error) {
+    throw new Error('Não foi possível obter os dados do produto.')
+  }
+}
+
+export default async function Product({ params }: ProductProps) {
+  const product = await getProduct(params.id)
 
   const formattedPrice = formatPrice(product.price_in_cents)
 
