@@ -1,5 +1,6 @@
 import Image from 'next/image'
 import { ShoppingBag } from 'lucide-react'
+import { Metadata } from 'next'
 
 import { type Product } from '@/types/product'
 import { formatPrice } from '@/utils/format-price'
@@ -33,6 +34,16 @@ async function getProduct(id: string): Promise<Product> {
     return product.data.Product
   } catch (error) {
     throw new Error('Não foi possível obter os dados do produto.')
+  }
+}
+
+export async function generateMetadata({
+  params,
+}: ProductProps): Promise<Metadata> {
+  const product = await getProduct(params.id)
+
+  return {
+    title: product.name,
   }
 }
 
