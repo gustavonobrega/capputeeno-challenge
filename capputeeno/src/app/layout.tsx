@@ -8,8 +8,10 @@ const saira = Saira({
 })
 
 export const metadata: Metadata = {
-  title: 'Capputeeno',
-  description: 'Frontend challenge',
+  title: {
+    template: '%s | Capputeeno',
+    default: 'Capputeeno',
+  },
 }
 
 export default function RootLayout({
@@ -19,9 +21,7 @@ export default function RootLayout({
 }) {
   return (
     <html className={saira.className} lang="pt">
-      <body className="bg-app-background-100">
-        {children}
-      </body>
+      <body className="bg-app-background-100">{children}</body>
     </html>
   )
 }
