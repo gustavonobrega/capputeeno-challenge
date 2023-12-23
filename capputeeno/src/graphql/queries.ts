@@ -11,3 +11,26 @@ export const GET_PRODUCTS = `
     }
   }
 `
+export const GET_PRODUCT = `
+  query getProduct($id: ID!) {
+    Product(id: $id) {
+      id
+      name
+      category
+      description
+      image_url
+      price_in_cents
+    }
+  }
+`
+
+export const GET_TOP5 = `
+  query getTop5 {
+    allProducts(sortField: "sales",  sortOrder: "desc", page: 1, perPage: 5) {
+      id
+      name
+      image_url
+      price_in_cents
+    }
+  }
+`

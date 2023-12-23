@@ -1,11 +1,12 @@
 import Image from 'next/image'
+import { ShoppingBag } from 'lucide-react'
 
 import { type Product } from '@/types/product'
-import { ShoppingBag } from 'lucide-react'
 import { formatPrice } from '@/utils/format-price'
 import { BackButton } from '@/components/BackButton'
 import { AddButton } from './components/AddButton'
 import { env } from '@/env'
+import { GET_PRODUCT, GET_TOP5 } from '@/graphql/queries'
 
 type ProductProps = {
   params: {
@@ -24,18 +25,7 @@ async function getProduct(id: string): Promise<Product> {
         'Content-type': 'application/json',
       },
       body: JSON.stringify({
-        query: `
-          query getProduct($id: ID!) {
-            Product(id: $id) {
-              id
-              name
-              category
-              description
-              image_url
-              price_in_cents
-            }
-          }
-        `,
+        query: GET_PRODUCT,
         variables: { id },
       }),
     })
@@ -44,6 +34,30 @@ async function getProduct(id: string): Promise<Product> {
   } catch (error) {
     throw new Error('Não foi possível obter os dados do produto.')
   }
+}
+
+export async function generateStaticParams() {
+  const response = await fetch(env.APP_URL, {
+    next: {
+      revalidate: 60 * 60, // 1 hour
+    },
+    method: 'POST',
+    headers: {
+      'Content-type': 'application/json',
+    },
+    body: JSON.stringify({
+      query: GET_TOP5,
+      variables: {},
+    }),
+  })
+
+  const products = await response.json()
+
+  return products.data.allProducts.map((product: Product) => {
+    return {
+      id: product.id,
+    }
+  })
 }
 
 export default async function Product({ params }: ProductProps) {
