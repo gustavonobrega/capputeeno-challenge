@@ -1,7 +1,7 @@
 import { Saira_Stencil_One as Stencil } from 'next/font/google'
 import Link from 'next/link'
 import React from 'react'
-import { SearchInput } from '../SearchInput'
+import { SearchForm } from '../SearchForm'
 import { CartButton } from './CartButton'
 
 const stencil = Stencil({
@@ -21,7 +21,7 @@ export function Header() {
         </Link>
 
         <div className="flex items-center gap-6 ">
-          <SearchInput placeholder="Procurando por algo específico?" />
+          <SearchForm placeholder="Procurando por algo específico?" />
 
           <CartButton />
         </div>
