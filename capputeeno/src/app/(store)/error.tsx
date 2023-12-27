@@ -19,7 +19,7 @@ export default function Error({ error, reset }: ErrorProps) {
         {error.message}
       </h1>
       <p className=" mt-4 text-sm font-medium text-app-title">
-        Ocorreu um erro. Por favor tente novamente!
+        Ocorreu um erro. Por favor, tente novamente!
       </p>
       <div className="mt-8 flex items-center justify-center gap-5">
         <button className={button()} onClick={reset}>

@@ -19,7 +19,7 @@ type QueryData = {
 }
 
 export default function Home() {
-  const { type, order, search, page, perPage } = useFilterContext()
+  const { type, order, page, perPage } = useFilterContext()
 
   const { data, isLoading, isError } = useQuery<QueryData>({
     queryKey: ['products', type, order, page],
@@ -36,9 +36,7 @@ export default function Home() {
     },
   })
 
-  const products = data?.products?.filter((product) =>
-    product.name.toLocaleLowerCase().includes(search.toLocaleLowerCase()),
-  )
+  const products = data?.products
 
   return (
     <div className="m-auto mt-9 max-w-desktop px-5 pb-16">
