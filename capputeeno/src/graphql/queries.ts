@@ -34,3 +34,14 @@ export const GET_TOP5 = `
     }
   }
 `
+
+export const GET_PRODUCTS_BY_NAME = `
+  query getProductsByName($filter: ProductFilter) {
+    allProducts(filter: $filter) {
+      id
+      name
+      image_url
+      price_in_cents
+    }
+  }
+`
