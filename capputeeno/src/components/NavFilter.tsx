@@ -2,8 +2,8 @@
 
 import { tv } from 'tailwind-variants'
 
-import { useFilterContext } from '@/hooks/useFilterContext'
 import { type FilterType } from '@/types/filter-types'
+import { useRouter } from 'next/navigation'
 
 const navItem = tv({
   base: [
@@ -16,6 +16,10 @@ const navItem = tv({
   },
 })
 
+type NavFilterProps = {
+  type: FilterType
+}
+
 type ITypeList = {
   title: string
   type: FilterType
@@ -27,8 +31,12 @@ const typeList: ITypeList = [
   { title: 'Canecas', type: 'mugs' },
 ]
 
-export function NavFilter() {
-  const { type, handleChangeType } = useFilterContext()
+export function NavFilter({ type }: NavFilterProps) {
+  const router = useRouter()
+
+  function handleTypeFilter(selectedType: string) {
+    router.push(`/?type=${selectedType}`)
+  }
 
   return (
     <ul className="flex gap-5 whitespace-nowrap text-sm text-app-text-300 sm:gap-10 sm:text-base">
@@ -36,9 +44,11 @@ export function NavFilter() {
         return (
           <li key={item.type}>
             <button
-              className={navItem({ selected: item.type === type })}
+              className={navItem({
+                selected: item.type === type,
+              })}
               disabled={item.type === type}
-              onClick={() => handleChangeType(item.type)}
+              onClick={() => handleTypeFilter(item.type)}
             >
               {item.title}
             </button>

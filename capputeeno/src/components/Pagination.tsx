@@ -4,10 +4,15 @@ import { ChevronLeft, ChevronRight } from 'lucide-react'
 import React from 'react'
 import { tv } from 'tailwind-variants'
 
-import { useFilterContext } from '@/hooks/useFilterContext'
+import { FilterType, OrderOption } from '@/types/filter-types'
+import { useRouter } from 'next/navigation'
 
 type PaginationProps = {
   count?: number
+  page: number
+  type: FilterType
+  order: OrderOption
+  perPage: number
 }
 
 const button = tv({
@@ -25,10 +30,27 @@ const button = tv({
   },
 })
 
-export function Pagination({ count = 0 }: PaginationProps) {
-  const { page, setPage, perPage, type } = useFilterContext()
-
+export function Pagination({
+  count = 0,
+  page,
+  order,
+  type,
+  perPage,
+}: PaginationProps) {
+  const router = useRouter()
   const totalPages = Math.ceil(count / perPage)
+
+  function handlePageFilter(selectedPage: number) {
+    if (type === 'all' && order === '') {
+      router.push(`/?page=${selectedPage}`)
+    } else if (order === '') {
+      router.push(`/?type=${type}&page=${selectedPage}`)
+    } else if (type === 'all') {
+      router.push(`/?order=${order}&page=${selectedPage}`)
+    } else {
+      router.push(`/?type=${type}&order=${order}&page=${selectedPage}`)
+    }
+  }
 
   function generatePagesArray() {
     const maxVisiblePages = type === 'all' ? 5 : 3
@@ -54,18 +76,16 @@ export function Pagination({ count = 0 }: PaginationProps) {
     return pagesArray
   }
 
-  function handlePageChange(page: number) {
-    setPage((currentPage) => (page !== currentPage ? page : currentPage))
+  function handlePageChange(selectedPage: number) {
+    handlePageFilter(selectedPage !== page ? selectedPage : page)
   }
 
   function handlePreviousPage() {
-    setPage((currentPage) => (currentPage > 1 ? currentPage - 1 : currentPage))
+    handlePageFilter(page > 1 ? page - 1 : page)
   }
 
   function handleNextPage() {
-    setPage((currentPage) =>
-      currentPage < totalPages ? currentPage + 1 : currentPage,
-    )
+    handlePageFilter(page < totalPages ? page + 1 : page)
   }
 
   return (
