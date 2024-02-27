@@ -3,22 +3,38 @@
 import { ChevronDown } from 'lucide-react'
 import { ReactNode } from 'react'
 
-import { useFilterContext } from '@/hooks/useFilterContext'
 import * as SelectPrimitive from '@radix-ui/react-select'
-import { type OrderOption } from '@/types/filter-types'
+import { FilterType, type OrderOption } from '@/types/filter-types'
+import { useRouter } from 'next/navigation'
 
 type SelectProps = {
   children: ReactNode
   placeholder: string
+  order: OrderOption
+  type: FilterType
+  page: number
 }
 
-export function Select({ children, placeholder }: SelectProps) {
-  const { order, handleChangeOrder } = useFilterContext()
+export function Select({
+  children,
+  placeholder,
+  order,
+  type,
+  page,
+}: SelectProps) {
+  const router = useRouter()
+  function handleOrderFilter(selectedOrder: string) {
+    if (type === 'all') {
+      router.push(`/?order=${selectedOrder}&page=${page}`)
+    } else {
+      router.push(`/?type=${type}&order=${selectedOrder}&page=${page}`)
+    }
+  }
 
   return (
     <SelectPrimitive.Root
       value={order}
-      onValueChange={(value: OrderOption) => handleChangeOrder(value)}
+      onValueChange={(value: OrderOption) => handleOrderFilter(value)}
     >
       <SelectPrimitive.Trigger className="flex w-fit items-center gap-2 text-sm text-app-text-300 outline-app-light-orange">
         <SelectPrimitive.Value placeholder={placeholder} />
