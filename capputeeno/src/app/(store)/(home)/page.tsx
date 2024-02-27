@@ -9,6 +9,7 @@ import { Pagination } from '@/components/Pagination'
 import { z } from 'zod'
 import { env } from '@/env'
 import { FilterType, OrderOption } from '@/types/filter-types'
+import { Metadata } from 'next'
 
 type HomeProps = {
   searchParams: {
@@ -23,6 +24,10 @@ type QueryData = {
 
 const PERPAGE = 10
 
+export const metadata: Metadata = {
+  title: 'Home',
+}
+
 async function getProducts(
   type: FilterType,
   order: OrderOption,
@@ -30,9 +35,8 @@ async function getProducts(
 ): Promise<QueryData> {
   try {
     const response = await fetch(env.APP_URL, {
-      next: {
-        revalidate: 60 * 60, // 1 hour
-      },
+      // Como toda vez é gerado um novo ID para os produtos, não esta sendo usado cache em desenvolvimento.
+      cache: 'no-cache',
       method: 'POST',
       headers: {
         'Content-type': 'application/json',
