@@ -90,7 +90,7 @@ export function Pagination({
 
   return (
     <div className="flex gap-2 sm:justify-end">
-      <div className="flex gap-0.5">
+      <div className="flex gap-0.5" data-testid="pages">
         {generatePagesArray().map((pg) => {
           return (
             <button
