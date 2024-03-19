@@ -5,6 +5,8 @@ import { Saira } from 'next/font/google'
 const saira = Saira({
   subsets: ['latin'],
   weight: ['300', '400', '500', '600'],
+  display: 'swap',
+  adjustFontFallback: false,
 })
 
 export const metadata: Metadata = {

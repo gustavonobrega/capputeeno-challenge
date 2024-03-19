@@ -7,6 +7,8 @@ import { CartButton } from './CartButton'
 const stencil = Stencil({
   weight: ['400'],
   subsets: ['latin'],
+  display: 'swap',
+  adjustFontFallback: false,
 })
 
 export function Header() {
