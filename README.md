@@ -60,13 +60,14 @@ This React app features all the latest tools and practices in web development!
 - [Axios](https://axios-http.com/)
 - [Lucide Icons](https://lucide.dev/icons/)
 - [React Hot Toast](https://react-hot-toast.com/)
-
+- [Vitest](https://vitest.dev/)
+- [Testing Library](https://testing-library.com/)
+- [Playwright](https://playwright.dev/)
 
 
 ## 💻  Getting started
 
 _Before you run this application you need to make sure the server is running!_.
-
 
 
 #### Clone this repository
