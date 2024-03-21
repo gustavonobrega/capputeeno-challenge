@@ -57,7 +57,10 @@ export function CartCard({ product }: CartCardProps) {
         <div className="flex justify-between">
           <h3 className="font-light md:text-lg lg:text-xl">{product.name}</h3>
           <button className="text-app-red" onClick={handleRemoveProduct}>
-            <Trash2 className="h-4 w-4 lg:h-5 lg:w-5" />
+            <Trash2
+              className="h-4 w-4 lg:h-5 lg:w-5"
+              data-testid="remove-btn"
+            />
           </button>
         </div>
         <p className="mt-2 line-clamp-1 text-xs sm:line-clamp-2 md:mt-4 lg:line-clamp-5">

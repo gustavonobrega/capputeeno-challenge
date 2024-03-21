@@ -109,6 +109,7 @@ export function Pagination({
           disabled={page === 1}
           className={button({ arrowDisabled: page === 1 })}
           onClick={handlePreviousPage}
+          data-testid="previous-page"
         >
           <ChevronLeft size={18} />
         </button>
@@ -116,6 +117,7 @@ export function Pagination({
           disabled={page === totalPages}
           className={button({ arrowDisabled: page === totalPages })}
           onClick={handleNextPage}
+          data-testid="next-page"
         >
           <ChevronRight size={18} />
         </button>
